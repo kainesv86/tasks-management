@@ -39,12 +39,19 @@ export class TasksController {
   // getTaskById(@Param('id') id: string): Task {
   //   return this.tasksService.getTaskById(id);
   // }
-
+  @Post()
+  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.tasksService.createTask(createTaskDto);
+  }
   // @Post()
   // createTask(@Body() createTaskDto: CreateTaskDto): Task {
   //   return this.tasksService.createTask(createTaskDto);
   // }
 
+  @Delete('/:id')
+  deleteTaskById(@Param('id') id: string): void {
+    this.tasksService.deleteTask(id);
+  }
   // @Delete('/:id')
   // deleteTaskById(@Param('id') id: string): void {
   //   return this.tasksService.deleteTask(id);
