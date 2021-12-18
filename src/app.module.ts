@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './auth/user.entity';
 import { ConfigModule } from '@nestjs/config';
+
+import { Task } from './tasks/task.entity';
+import { User } from './auth/user.entity';
 
 const Config = ConfigModule.forRoot({
   isGlobal: true,
@@ -21,7 +23,7 @@ const DBConfig = TypeOrmModule.forRoot({
   database: 'task_management',
   synchronize: true,
   keepConnectionAlive: true,
-  entities: [User],
+  entities: [User, Task],
 });
 
 @Module({
