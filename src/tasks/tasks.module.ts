@@ -3,18 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TasksController } from './tasks.controller';
 import { TasksRepository } from './tasks.repository';
 import { TasksService } from './tasks.service';
-import { TaskStatus } from './task-status';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TasksRepository])],
+  imports: [TypeOrmModule.forFeature([TasksRepository]), AuthModule],
   controllers: [TasksController],
   providers: [TasksService],
 })
 export class TasksModule {}
-
-// export interface Task {
-//   id: string;
-//   title: string;
-//   description: string;
-//   status: TaskStatus;
-// }
